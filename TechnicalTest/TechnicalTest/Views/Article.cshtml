@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Article>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+@{
+//Get the ID of the Field
+var mediaId = @Umbraco.Field("articleImage", recursive: true);
+//Get the MediaType to Write the URL
+var media   = @Umbraco.Media(mediaId.ToString());
+//Salve the Path into the Image
+var image   = media.Url;
+}
+
+
+  <body>
+
+    <main role="main">
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="@image" alt="Card image cap">
+                <div class="card-body">
+                  <h3>@Umbraco.Field("title", recursive: true)</h3>
+                  <p class="card-text">@Umbraco.Field("body", recursive: true)</p>
+                </div>
+              </div>
+            </div>       
+          </div>
+        </div>
+      </div>
+    </main>
+
+   
+  </body>

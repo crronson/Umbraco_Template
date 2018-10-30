@@ -1,0 +1,106 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = null;
+}
+
+@* the fun starts here *@
+
+@{
+//Get the ID of the Field
+var mediaId = @Umbraco.Field("logo", recursive: true);
+//Get the MediaType to Write the URL
+var media   = @Umbraco.Media(mediaId.ToString());
+//Salve the Path into the Image
+var image   = media.Url;
+
+
+//Get the ID of the Field
+var mediaIdf = @Umbraco.Field("favicon", recursive: true);
+//Get the MediaType to Write the URL
+var mediaf   = @Umbraco.Media(mediaIdf.ToString());
+//Salve the Path into the Image
+var imagef   = mediaf.Url;
+
+
+}
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="@imagef">
+
+    <title>The Zen Agency - Technical Test</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/tt-wires.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">@Umbraco.Field("about", recursive: true)</h4>
+              <p class="text-muted">@Umbraco.Field("aboutText", recursive: true)</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Twitter Link</a></li>
+                <li><a href="#" class="text-white">Facebook Link</a></li>
+                <li><a href="#" class="text-white">Email Link</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="/" class="navbar-brand d-flex align-items-center">
+            <img class="site-logo" src="@image" alt="Site Logo">
+            <strong>@Umbraco.Field("siteHeader", recursive: true)</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    
+    @RenderBody()
+    
+    
+    
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/scripts/jquery-slim.min.js"><\/script>')</script>
+    <script src="/scripts/popper.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/holder.min.js"></script>
+  </body>
+</html>

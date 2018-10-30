@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Core.Models
+@using Umbraco.Web
+
+
+
+@{ 
+    
+    var selection = CurrentPage.Children.Where("Visible").OrderBy("CreateDate desc"); 
+    @* OrderBy() takes the property to sort by and optionally order desc/asc *@
+}
+
+
+
+
+@foreach (var item in selection)
+{
+    var mediaItem = @Umbraco.TypedMedia(@item.articleImage.ToString());
+    
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="@mediaItem.Url" alt="Card image cap">
+            <div class="card-body">
+            <p class="card-text">@Umbraco.Truncate(@item.body,100)<a href="@item.Url">Read More...</a></p>
+            </div>
+        </div>
+    </div>  
+    
+        
+}
+
+      
